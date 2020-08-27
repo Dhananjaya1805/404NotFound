@@ -1,10 +1,5 @@
 const express = require('express');
 const controller = require('../controllers/hackathon.controller');
-
-// const { celebrate: validate } = require('celebrate');
-// const { authorize } = require('../../middlewares/auth');
-// const { jewels, fetchpartreleaseamt } = require('../../validations/v1/partrelease.validation');
-
 const router = express.Router();
 
 router
@@ -23,7 +18,7 @@ router
    *
    * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
    */
-  .get(controller.vandetails);
+  .post(controller.vandetails);
 
 router
   .route('/cities')
