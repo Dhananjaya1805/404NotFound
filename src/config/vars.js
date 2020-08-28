@@ -10,8 +10,12 @@ module.exports = {
             token: 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU5YmZiM2ExNmU2ZDg1Mjc3YjU1ZGEyZCIsImNyZWF0ZWRBdCI6IjIwMTctMDktMThUMTE6NTM6MDUuMTI1WiIsImlhdCI6MTU4MTI2NDEzNywiZXhwIjoxNjEyODAwMTM3LCJhdWQiOiJydXBlZWsuY29tIiwiaXNzIjoicnVwZWVrLmNvbSJ9.MisrYfLbncQfu0ofczSS_yLw0WKN8Tbwizt9l90ViWA', 
             //`JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVjYTJmOWJhZDIwYzVhNzIzZmZmNjFkZiIsImNyZWF0ZWRBdCI6IjIwMTktMDQtMDJUMDU6NTc6MTQuNzg1WiIsImlhdCI6MTU5MzI2Mjc1MiwiZXhwIjoxNjI0Nzk4NzUyLCJhdWQiOiJydXBlZWsuY29tIiwiaXNzIjoicnVwZWVrLmNvbSJ9.QOHcN23fGnPiKxD_AWxqWGG3bRbIoEUkKw3NEgmj9uM`,
             endpoint: `https://test.rupeek.com`,
+            referralendpoint: `https://test.referral.rupeek.com`,
             getworkingcities: '/api/public/getCities',
             searchloans: '/api/support/searchloans',
+            searchusers: '/api/v2/support/searchusers',
+            unarchiveuser: `/api/techsupport/unarchiveemployee`,
+            setascustomer: '/api/techsupport/edituserroles'
         },
         payments: {
             token: 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU5YmZiM2ExNmU2ZDg1Mjc3YjU1ZGEyZCIsImNyZWF0ZWRBdCI6IjIwMTctMDktMThUMTE6NTM6MDUuMTI1WiIsImlhdCI6MTU4MTI2NDEzNywiZXhwIjoxNjEyODAwMTM3LCJhdWQiOiJydXBlZWsuY29tIiwiaXNzIjoicnVwZWVrLmNvbSJ9.MisrYfLbncQfu0ofczSS_yLw0WKN8Tbwizt9l90ViWA', 

@@ -1,5 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/hackathon.controller');
+const { Router } = require('express');
 const router = express.Router();
 
 router
@@ -38,4 +39,15 @@ router
    */
   .get(controller.getcities);
 
+router
+  .route('/searchusers')
+  .post(controller.searchusers);
+
+router
+ .route('/unarchiveuser')
+ .post(controller.unarchiveuser);
+
+router
+ .route('/setascustomer')
+ .post(controller.setascustomer);
 module.exports = router;

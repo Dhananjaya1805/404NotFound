@@ -38,7 +38,7 @@ exports.vandetails = async(req, res, next) => {
         loanfrompayments.forEach( (loan) => {
             if(loan.statuscode < 5){
                 if( loan.razorpayvan === "" || loan.razorpayvan === null ){
-                    console.log(loan.coreid)
+                    //console.log(loan.coreid)
                     if( loan.coreid === "" || loan.coreid === null ){
                         loanrequest.forEach( (coreloanobj) => {
                             const coreloan = find(coreloanobj.loans, loan => { loan.lploanid === loan.loanid});
@@ -83,10 +83,62 @@ exports.vandetails = async(req, res, next) => {
                 }
            }
         });
-        res.json({loanpayments, loanrequest})
-        // res.status(httpStatus.OK).send( vanCreated ? 'Van details has been successfully created' : 'Van details is upto date.');
+        //res.json({loanpayments, loanrequest})
+        res.status(httpStatus.OK).send( vanCreated ? 'Van details has been successfully created' : 'Van details is upto date.');
     } catch (error) {
         console.log(error);
         return next(error);
+    }
+}
+
+exports.searchusers = async(req,res,next) => {
+    try {
+        const user = await CoreService.searchusers(req.body.phone);
+        const userid = user.users[0].id;
+        const userArchive = user.users[0] ? user.users[0].archived : null;
+        if(userArchive == false)
+        {
+            res.status(httpStatus.OK).send(`User is active`);
+        }
+        else if(userArchive == null){
+            res.status(httpStatus.OK).send(`User is not present in system`);
+        }
+        else{
+            //console.log(userid);
+            this.unarchiveuser(req.body.phone);
+            //this.setascustomer(userid);
+            res.status(httpStatus.OK).send('User was deleted, now restored successfully and set as customer');
+        }
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    }
+}
+
+exports.unarchiveuser = async(phone) => {
+    try {
+         await CoreService.unarchiveuser(phone)
+        .then((result) => {
+            return result;
+        })
+    } catch (error) {
+        throw new APIError({
+            status: (error.response ? error.response.status : httpStatus.INTERNAL_SERVER_ERROR),
+            message: (error.response ? (error.response.Error || error.response.Usermsg) : error.message),
+          }); 
+    }
+}
+
+exports.setascustomer = async(userid) => {
+    try {
+        await CoreService.setascustomer(userid)
+        .then((result) => {
+            return result;
+        })
+    } catch (error) {
+        throw new APIError({
+            status: (error.response ? error.response.status : httpStatus.INTERNAL_SERVER_ERROR),
+            message: (error.response ? (error.response.Error || error.response.Usermsg) : error.message),
+          }); 
     }
 }
